@@ -63,14 +63,15 @@ void UnitTestInverseNormalize() {
   KALDI_ASSERT(InverseNormalize("她出生于八六年八月十八日她弟弟出生于一九九五年三月一日") == "她出生于86年8月18日她弟弟出生于1995年3月1日");
   // Digit
   KALDI_ASSERT(InverseNormalize("电影中梁朝伟扮演的陈永仁的编号二七一四九") == "电影中梁朝伟扮演的陈永仁的编号27149");
-  // Todo: Fraction
+  // Fraction
+  KALDI_ASSERT(InverseNormalize("现场有十二分之七的观众投出了赞成票") == "现场有7/12的观众投出了赞成票");
   // Money
   KALDI_ASSERT(InverseNormalize("随便来几个价格十二块五和三十四点五元和二十点一万") == "随便来几个价格12块5和34.5元和20.1万");
-  // Todo: Percentage
-  // KALDI_ASSERT(InverseNormalize("明天有百分之六十二的概率降雨") == "明天有62％的概率降雨");
-  // Todo: Telephone
-//  KALDI_ASSERT(InverseNormalize("这是固话零四二一三三四四一一二二") == "这是固话042133441122");
-//  KALDI_ASSERT(InverseNormalize("这是手机八六一八五四四一三九一二一") == "这是手机+8618544139121");
+  // Percentage
+  KALDI_ASSERT(InverseNormalize("明天有百分之六十二的概率降雨") == "明天有62%的概率降雨");
+  // Telephone
+  KALDI_ASSERT(InverseNormalize("这是固话零四二一三三四四一一二二") == "这是固话042133441122");
+  KALDI_ASSERT(InverseNormalize("这是手机八六一八五四四一三九一二一") == "这是手机8618544139121");
 }
 
 }  // end namespace itn.
