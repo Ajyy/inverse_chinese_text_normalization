@@ -1,5 +1,6 @@
 #include "base/kaldi-common.h"
 #include "itn/itn.h"
+#include "itn/itn-utils.h"
 
 namespace itn {
 
@@ -74,6 +75,18 @@ void UnitTestInverseNormalize() {
   KALDI_ASSERT(InverseNormalize("这是手机八六一八五四四一三九一二一") == "这是手机8618544139121");
 }
 
+void UnitTestInverseNormalizeByInputFile(const string& file_name) {
+  vector<string> test_cases;
+  ReadTestCases(file_name, test_cases);
+  for (const string& test_case: test_cases) {
+    if (test_case == "时间测试二零一八年五月二十三号上午十点十分") {
+      cout << "111" << endl;
+    }
+    cout << test_case << endl;
+    cout << InverseNormalize(test_case) << endl;
+    cout << endl;
+  }
+}
 }  // end namespace itn.
 
 int main() {
@@ -85,5 +98,6 @@ int main() {
   UnitTestConvertNormalCNNum();
   UnitTestCNNumTranslation();
   UnitTestInverseNormalize();
+  UnitTestInverseNormalizeByInputFile("susie-test-cases.txt");
   return 0;
 }
