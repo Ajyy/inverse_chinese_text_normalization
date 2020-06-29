@@ -1,7 +1,3 @@
-//
-// Created by junyiao on 2020/6/25.
-//
-
 #ifndef KALDI_SRC_ITN_ITN_H_
 #define KALDI_SRC_ITN_ITN_H_
 
@@ -18,6 +14,13 @@ namespace itn {
 #define CHINESE_CHAR_LEN 3  //utf-8
 
 /***
+ * Test whether the input cn_num is a valid chinese number
+ * @param cn_num
+ * @return
+ */
+bool IsValid(const std::string& cn_num);
+
+/***
  * Extract the chinese number in the input string
  * @param sent input sentence
  * @param nums_info store the result, its element is a pair (chinese number, it's index)
@@ -29,7 +32,7 @@ void FindCNNums(const std::string& sent, std::vector<std::pair<std::string, int3
  * @param cn_num chinese number
  * @return arabic number
  */
-std::string CNNumTranslation(const std::string& cn_num);
+std::string CNNumTranslation(std::string cn_num);
 
 /***
  * Convert chinese number which does not has units to arabic number like 二零二零，一三五
@@ -53,7 +56,7 @@ unsigned ConvertNormalCNNum(std::string sub_num);
 std::string FindMaxUnit(const std::string& num);
 
 /***
- * Preprocess the input sentence for big to small and special cases
+ * Preprocess the input sentence for big to small and some special cases
  * @param sent input sentence
  * @return processed sentence
  */
