@@ -32,10 +32,26 @@ const map<string, string> BIG_TO_SMALL = {
 const map<string, string> PRE_SPACIAL_MAP_TABLE = {
     {"两", "二"}, {"兩", "二"}, {"幺", "一"}
 };
-
 const map<string, string> LAST_SPACIAL_MAP_TABLE = {
-    {"正", "+"}, {"负", "-"}, {"負", "-"}, {"點", "."}, {"点", "."},
+    {"正", "+"}, {"负", "-"}, {"負", "-"}, {"點", "."}, {"点", "."}, {"比", ":"},
 };
+
+bool IsValid(const std::string& cn_num) {
+  bool has_cont_base_num = false;
+  bool has_unit = false;
+  string last_char;
+  string cur_cn_char;
+  for (int32 i = 0; i < cn_num.length(); i += CHINESE_CHAR_LEN) {
+    last_char = cur_cn_char;
+    cur_cn_char = cn_num.substr(i, CHINESE_CHAR_LEN);
+    if (last_char != "零" &&BASE_NUMBER_MAP_TABLE.count(cur_cn_char) && BASE_NUMBER_MAP_TABLE.count(last_char))
+      has_cont_base_num = true;
+    if (UNIT_MAP_TABLE.count(cur_cn_char))
+      has_unit = true;
+  }
+
+  return !(has_unit && has_cont_base_num);
+}
 
 void FindCNNums(const string& sent, vector<pair<string, int32>> &nums_info) {
   int32 i = 0;
@@ -53,20 +69,23 @@ void FindCNNums(const string& sent, vector<pair<string, int32>> &nums_info) {
     }
 
     if (!cn_num.empty()) {
-      if (cn_num != "百") {
-        if (UNIT_MAP_TABLE.count(cn_num))
-          nums_info.emplace_back(pair<string, int32>("一" + cn_num, i - cn_num.length()));
-        else
-          nums_info.emplace_back(pair<string, int32>(cn_num, i - cn_num.length()));
+      if (IsValid(cn_num) && cn_num != "百") {
+//        if (UNIT_MAP_TABLE.count(cn_num))
+//          nums_info.emplace_back(pair<string, int32>("一" + cn_num, i - cn_num.length()));
+//        else
+        nums_info.emplace_back(pair<string, int32>(cn_num, i - cn_num.length()));
       }
       cn_num = "";
     }
+
     i += CHINESE_CHAR_LEN;
     last_char = cur_cn_char;
   }
 }
 
-string CNNumTranslation(const string& cn_num) {
+string CNNumTranslation(string cn_num) {
+  if (UNIT_MAP_TABLE.count(cn_num))
+    cn_num = "一" + cn_num;
   string no_unit_result = ConvertNoUnitCNNum(cn_num);
   if (!no_unit_result.empty())
     return no_unit_result;
@@ -168,7 +187,11 @@ string ProcessSent(const string &sent, const string& order) {
       }
     } else {
       if (LAST_SPACIAL_MAP_TABLE.count(cur_char)) { // For special case
-        processed_sent += LAST_SPACIAL_MAP_TABLE.find(cur_char)->second;
+        if (cur_char != "比" || (i > 0 && isdigit(sent[i - 1])
+        && i < sent.length() - CHINESE_CHAR_LEN && isdigit(sent[i + CHINESE_CHAR_LEN])))
+          processed_sent += LAST_SPACIAL_MAP_TABLE.find(cur_char)->second;
+        else
+          processed_sent += cur_char;
       } else {
         processed_sent += cur_char;
       }
