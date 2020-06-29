@@ -20,6 +20,13 @@ namespace itn {
  */
 void SplitByCNChar(const std::string& s, std::vector<std::string>& tokens, const std::string& delimiters);
 
+/**
+ * read test cases from a file
+ * @param file_name the file which stores test cases
+ * @param test_cases the vector which has pair elements, Todo: and they store the test cases
+ */
+void ReadTestCases(const std::string& file_name, std::vector<std::string>& test_cases);
+
 }
 
 #endif //KALDI_SRC_ITN_ITN_UTILS_H_
