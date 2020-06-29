@@ -1,5 +1,7 @@
 #include "itn/itn-utils.h"
 #include "base/kaldi-types.h"
+#include <fstream>
+#include <iostream>
 
 namespace itn {
 
@@ -18,6 +20,17 @@ void SplitByCNChar(const string& s, vector<string>& tokens, const string& delimi
     tokens.emplace_back(s.substr(last_pos, s.length() - last_pos));
   else
     tokens.emplace_back("");
+}
+
+void ReadTestCases(const std::string& file_name, std::vector<std::string>& test_cases) {
+  fstream f(file_name);
+  string line;
+  while(getline(f,line)) {
+//    int32 idx = line.find(' ');
+    test_cases.emplace_back(line);
+  }
+
+  f.close();
 }
 
 }
