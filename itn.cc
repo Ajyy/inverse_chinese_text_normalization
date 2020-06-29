@@ -53,7 +53,12 @@ void FindCNNums(const string& sent, vector<pair<string, int32>> &nums_info) {
     }
 
     if (!cn_num.empty()) {
-      nums_info.emplace_back(pair<string, int32>(cn_num, i - cn_num.length()));
+      if (cn_num != "百") {
+        if (UNIT_MAP_TABLE.count(cn_num))
+          nums_info.emplace_back(pair<string, int32>("一" + cn_num, i - cn_num.length()));
+        else
+          nums_info.emplace_back(pair<string, int32>(cn_num, i - cn_num.length()));
+      }
       cn_num = "";
     }
     i += CHINESE_CHAR_LEN;
@@ -70,17 +75,15 @@ string CNNumTranslation(const string& cn_num) {
 }
 
 string ConvertNoUnitCNNum(const string& cn_num) {
-  int32 arabic_num = 0;
-  int32 base = 1;
-  for (int i = int(cn_num.length()) - CHINESE_CHAR_LEN; i >= 0; i -= CHINESE_CHAR_LEN) {
+  string arabic_num;
+  for (int32 i = 0; i < cn_num.length(); i += CHINESE_CHAR_LEN) {
     string cur_cn_char = cn_num.substr(i, CHINESE_CHAR_LEN);
     if (UNIT_MAP_TABLE.count(cur_cn_char))
       return "";
-    arabic_num += (BASE_NUMBER_MAP_TABLE.find(cur_cn_char)->second * base);
-    base *= 10;
+    arabic_num += to_string(BASE_NUMBER_MAP_TABLE.find(cur_cn_char)->second);
   }
 
-  return to_string(arabic_num);
+  return arabic_num;
 }
 
 unsigned ConvertNormalCNNum(string sub_num) {
@@ -110,7 +113,6 @@ unsigned ConvertNormalCNNum(string sub_num) {
     if (sub_nums[1].length() == CHINESE_CHAR_LEN)
       return ConvertNormalCNNum(sub_nums[0]) * unit_value + ConvertNormalCNNum(sub_nums[1]) * int(unit_value / 10);
     else
-      // Todo: 一十
       return ConvertNormalCNNum(sub_nums[0]) * unit_value + ConvertNormalCNNum(sub_nums[1]);
   }
 }
@@ -124,11 +126,37 @@ string FindMaxUnit(const string& num) {
 
 string ProcessSent(const string &sent, const string& order) {
   string processed_sent;
+  string last_num;
   for (int32 i = 0; i < sent.length(); i += CHINESE_CHAR_LEN) {
+    // Test for percentage and fraction
+    bool is_percentage = false;
+    bool is_fraction = false;
+    string first_num;
+    if (order == "last") {
+      if (i >= 3 * CHINESE_CHAR_LEN && sent.substr(i - 3 * CHINESE_CHAR_LEN, 3 * CHINESE_CHAR_LEN) == "百分之") {
+        is_percentage = true;
+        processed_sent = processed_sent.substr(0, processed_sent.length() - 3 * CHINESE_CHAR_LEN);
+      } else if (i >= 2 * CHINESE_CHAR_LEN && sent.substr(i - 2 * CHINESE_CHAR_LEN, 2 * CHINESE_CHAR_LEN) == "分之") {
+        is_fraction = true;
+        first_num = last_num;
+      }
+    }
+
+    if (isdigit(sent[i]))
+      last_num = "";
     while (isdigit(sent[i])) {
       processed_sent += sent[i];
+      last_num += sent[i];
       i++;
     }
+
+    if (is_percentage)
+      processed_sent += "%";
+    else if (is_fraction) {
+      processed_sent = processed_sent.substr(0, processed_sent.length() - first_num.length() - 2 * CHINESE_CHAR_LEN - last_num.length());
+      processed_sent += (last_num.append( "/" + first_num));
+    }
+
     string cur_char = sent.substr(i, CHINESE_CHAR_LEN);
     if (order == "pre") {
       if (BIG_TO_SMALL.count(cur_char)) { // Big number to small number
