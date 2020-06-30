@@ -8,6 +8,8 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <algorithm>
+#include <iostream>
 
 namespace itn {
 
@@ -24,8 +26,16 @@ bool IsValid(const std::string& cn_num);
  * Extract the chinese number in the input string
  * @param sent input sentence
  * @param nums_info store the result, its element is a pair (chinese number, it's index)
+ * Todo ic_index
  */
-void FindCNNums(const std::string& sent, std::vector<std::pair<std::string, int32>> &nums_info);
+void FindCNNums(const std::string& sent, std::vector<std::pair<std::string, int32>> &nums_info, std::vector<int32> &ic_index);
+
+/***
+ *
+ * @param sent input
+ * @param ic_index
+ */
+void CheckIdiomAndCi(const std::string& sent, std::vector<int32> &ic_index);
 
 /***
  * Convert the chinese number to arabic number
@@ -58,9 +68,10 @@ std::string FindMaxUnit(const std::string& num);
 /***
  * Preprocess the input sentence for big to small and some special cases
  * @param sent input sentence
+ * Todo ic_index
  * @return processed sentence
  */
-std::string ProcessSent(const std::string& sent, const std::string& order);
+std::string ProcessSent(const std::string& sent, const std::string& order, std::vector<int32> &ic_index);
 
 /***
  * Convert the normalized sentence to the original one, this is the main function

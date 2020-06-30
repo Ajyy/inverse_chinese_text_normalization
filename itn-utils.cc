@@ -22,7 +22,7 @@ void SplitByCNChar(const string& s, vector<string>& tokens, const string& delimi
     tokens.emplace_back("");
 }
 
-void ReadTestCases(const std::string& file_name, std::vector<std::string>& test_cases) {
+void ReadFileByLine(const std::string& file_name, std::vector<std::string>& test_cases) {
   fstream f(file_name);
   string line;
   while(getline(f,line)) {

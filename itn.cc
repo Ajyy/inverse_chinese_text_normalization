@@ -6,6 +6,7 @@ namespace itn {
 
 using namespace std;
 
+// Todo 星期
 const map<string, int32> BASE_NUMBER_MAP_TABLE = {
     {"零", 0}, {"一", 1}, {"二", 2}, {"三", 3}, {"四", 4},
     {"五", 5}, {"六", 6}, {"七", 7}, {"八", 8}, {"九", 9}
@@ -22,18 +23,23 @@ const vector<string> BASE_NUMBER = {
 const vector<string> UNITS = {
     "亿", "万", "千", "百", "十"
 };
+vector<string> idiom_and_ci;
 // Used for preprocess sentences
 const map<string, string> BIG_TO_SMALL = {
     {"壹", "一"}, {"贰", "二"}, {"叁", "三"}, {"肆", "四"}, {"伍", "五"},
     {"陆", "六"}, {"柒", "七"}, {"捌", "八"}, {"玖", "九"}, // Simplify number
     {"貳", "二"}, {"參", "三"}, {"陸", "六"}, // Traditional number, others are same as the simplify one
-    {"拾", "十"}, {"佰", "百"}, {"仟", "千"}, {"萬", "万"}, // Units
+    {"拾", "十"}, {"佰", "百"}, {"仟", "千"}, {"萬", "万"}, {"億", "亿"} // Units
 };
 const map<string, string> PRE_SPACIAL_MAP_TABLE = {
     {"两", "二"}, {"兩", "二"}, {"幺", "一"}
 };
 const map<string, string> LAST_SPACIAL_MAP_TABLE = {
     {"正", "+"}, {"负", "-"}, {"負", "-"}, {"點", "."}, {"点", "."}, {"比", ":"},
+};
+// For date
+const vector<string> DATE_KEYWORD = {
+    "时间", "上午", "中午", "下午", "晚上", "凌晨", "分", "日",
 };
 
 bool IsValid(const std::string& cn_num) {
@@ -53,13 +59,51 @@ bool IsValid(const std::string& cn_num) {
   return !(has_unit && has_cont_base_num);
 }
 
-void FindCNNums(const string& sent, vector<pair<string, int32>> &nums_info) {
+void CheckIdiomAndCi(const string& sent, vector<int32> &ic_index) {
+  for (const auto& ic: idiom_and_ci) {
+    int32 ic_idx = -1;
+    if ((ic_idx = sent.find(ic)) != string::npos) {
+      for (int i = ic_idx; i < ic_idx + ic.length(); i += CHINESE_CHAR_LEN)
+        ic_index.emplace_back(i);
+    }
+  }
+}
+
+bool CheckDateKeyword(const string& sent, int index) {
+  int32 start_index = 0;
+  if (index - 5 * CHINESE_CHAR_LEN >= 0)
+    start_index = index - 5 * CHINESE_CHAR_LEN;
+  int32 end_index = sent.length();
+  if (index + 5 * CHINESE_CHAR_LEN <= sent.length())
+    end_index = index + 5 * CHINESE_CHAR_LEN;
+  string check_str = sent.substr(start_index, end_index - start_index);
+  for (const auto& keyword: DATE_KEYWORD)
+    if (check_str.find(keyword) != string::npos)
+      return true;
+  return false;
+}
+
+void FindCNNums(const string& sent, vector<pair<string, int32>> &nums_info, vector<int32> &ic_index) {
   int32 i = 0;
   string cn_num;
   string last_char;
+  bool check_dian = false;
   while (i + CHINESE_CHAR_LEN - 1 < sent.length()) {
+    if (find(ic_index.begin(), ic_index.end(), i) != ic_index.end()) {
+      i += CHINESE_CHAR_LEN;
+      continue;
+    }
+
     string cur_cn_char = sent.substr(i, CHINESE_CHAR_LEN);
-    while (BASE_NUMBER_MAP_TABLE.count(cur_cn_char) || (UNIT_MAP_TABLE.count(cur_cn_char) && last_char != "点")) {
+
+    // Test for 点
+    if (cur_cn_char == "点" && i + CHINESE_CHAR_LEN < sent.length()
+        && find(ic_index.begin(), ic_index.end(), i + CHINESE_CHAR_LEN) == ic_index.end()
+        && (BASE_NUMBER_MAP_TABLE.count(sent.substr(i + CHINESE_CHAR_LEN, CHINESE_CHAR_LEN))
+            || sent.substr(i + CHINESE_CHAR_LEN, CHINESE_CHAR_LEN) == "十"))
+      check_dian = CheckDateKeyword(sent, i);
+
+    while (BASE_NUMBER_MAP_TABLE.count(cur_cn_char) || (UNIT_MAP_TABLE.count(cur_cn_char) && (last_char != "点" || check_dian))) {
       cn_num += cur_cn_char;
       i += CHINESE_CHAR_LEN;
       if (i + CHINESE_CHAR_LEN - 1 < sent.length())
@@ -69,13 +113,17 @@ void FindCNNums(const string& sent, vector<pair<string, int32>> &nums_info) {
     }
 
     if (!cn_num.empty()) {
+      if (check_dian)
+        check_dian = false;
       if (IsValid(cn_num) && cn_num != "百") {
-//        if (UNIT_MAP_TABLE.count(cn_num))
-//          nums_info.emplace_back(pair<string, int32>("一" + cn_num, i - cn_num.length()));
-//        else
         nums_info.emplace_back(pair<string, int32>(cn_num, i - cn_num.length()));
       }
       cn_num = "";
+
+      if (UNIT_MAP_TABLE.count(cur_cn_char) == 0) {
+        last_char = sent.substr(i - CHINESE_CHAR_LEN, CHINESE_CHAR_LEN);
+        continue;
+      }
     }
 
     i += CHINESE_CHAR_LEN;
@@ -143,10 +191,15 @@ string FindMaxUnit(const string& num) {
   return "个";
 }
 
-string ProcessSent(const string &sent, const string& order) {
+string ProcessSent(const string &sent, const string& order, vector<int32> &ic_index) {
   string processed_sent;
   string last_num;
   for (int32 i = 0; i < sent.length(); i += CHINESE_CHAR_LEN) {
+    if (find(ic_index.begin(), ic_index.end(), i) != ic_index.end()) {
+      processed_sent += sent.substr(i, CHINESE_CHAR_LEN);;
+      continue;
+    }
+
     // Test for percentage and fraction
     bool is_percentage = false;
     bool is_fraction = false;
@@ -169,6 +222,7 @@ string ProcessSent(const string &sent, const string& order) {
       i++;
     }
 
+    string cur_char = sent.substr(i, CHINESE_CHAR_LEN);
     if (is_percentage)
       processed_sent += "%";
     else if (is_fraction) {
@@ -176,7 +230,6 @@ string ProcessSent(const string &sent, const string& order) {
       processed_sent += (last_num.append( "/" + first_num));
     }
 
-    string cur_char = sent.substr(i, CHINESE_CHAR_LEN);
     if (order == "pre") {
       if (BIG_TO_SMALL.count(cur_char)) { // Big number to small number
         processed_sent += BIG_TO_SMALL.find(cur_char)->second;
@@ -186,15 +239,18 @@ string ProcessSent(const string &sent, const string& order) {
         processed_sent += cur_char;
       }
     } else {
-      if (LAST_SPACIAL_MAP_TABLE.count(cur_char)) { // For special case
+      bool check_dian = false;
+      if (cur_char == "点")
+        check_dian = CheckDateKeyword(sent, i);
+
+      if (LAST_SPACIAL_MAP_TABLE.count(cur_char) && !check_dian) { // For special case
         if (cur_char != "比" || (i > 0 && isdigit(sent[i - 1])
-        && i < sent.length() - CHINESE_CHAR_LEN && isdigit(sent[i + CHINESE_CHAR_LEN])))
+            && i < sent.length() - CHINESE_CHAR_LEN && isdigit(sent[i + CHINESE_CHAR_LEN])))
           processed_sent += LAST_SPACIAL_MAP_TABLE.find(cur_char)->second;
         else
           processed_sent += cur_char;
-      } else {
+      } else
         processed_sent += cur_char;
-      }
     }
   }
 
@@ -202,9 +258,14 @@ string ProcessSent(const string &sent, const string& order) {
 }
 
 string InverseNormalize(const string& sent) {
-  string processed_sent = ProcessSent(sent, "pre");
+  // Initialize IDIOMS_AND_CI
+  if (idiom_and_ci.empty())
+    ReadFileByLine("data/idiom-and-ci.txt", idiom_and_ci);
+  vector<int32> ic_index;
+  CheckIdiomAndCi(sent, ic_index);
+  string processed_sent = ProcessSent(sent, "pre", ic_index);
   vector<pair<string, int32>> nums_info;
-  FindCNNums(processed_sent, nums_info);
+  FindCNNums(processed_sent, nums_info, ic_index);
 
   int32 left_idx = 0;
   string result;
@@ -215,7 +276,7 @@ string InverseNormalize(const string& sent) {
 
   if (left_idx != processed_sent.length())
     result += processed_sent.substr(left_idx, processed_sent.length() - left_idx);
-  return ProcessSent(result, "last");
+  return ProcessSent(result, "last", ic_index);
 }
 
 }

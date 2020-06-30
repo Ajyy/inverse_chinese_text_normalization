@@ -20,7 +20,9 @@ void UnitTestFindMaxUnit() {
 
 void UnitTestFindCNNums() {
   vector<pair<string, int32>> nums_info;
-  FindCNNums("二零一九年五月二十一", nums_info);
+  vector<int32> ic_index;
+  CheckIdiomAndCi("二零一九年五月二十一", ic_index);
+  FindCNNums("二零一九年五月二十一", nums_info, ic_index);
   KALDI_ASSERT(nums_info[0].first == "二零一九");
   KALDI_ASSERT(nums_info[1].first == "五");
   KALDI_ASSERT(nums_info[2].first == "二十一");
@@ -31,10 +33,16 @@ void UnitTestFindCNNums() {
 
 void UnitTestPreprocessSent() {
   // Test for pre order
-  KALDI_ASSERT(ProcessSent("壹贰叁肆伍陆柒捌玖貳參陸拾佰仟萬", "pre") == "一二三四五六七八九二三六十百千万");
-  KALDI_ASSERT(ProcessSent("两兩幺", "pre") == "二二一");
+  vector<int32> ic_index;
+  CheckIdiomAndCi("壹贰叁肆伍陆柒捌玖貳參陸拾佰仟萬", ic_index);
+  KALDI_ASSERT(ProcessSent("壹贰叁肆伍陆柒捌玖貳參陸拾佰仟萬", "pre", ic_index) == "一二三四五六七八九二三六十百千万");
+  ic_index = {};
+  CheckIdiomAndCi("两兩幺", ic_index);
+  KALDI_ASSERT(ProcessSent("两兩幺", "pre", ic_index) == "二二一");
   // Test for last order
-  KALDI_ASSERT(ProcessSent("正负負點点", "last") == "+--..");
+  ic_index = {};
+  CheckIdiomAndCi("正负負點点", ic_index);
+  KALDI_ASSERT(ProcessSent("正负負點点", "last", ic_index) == "+--..");
 }
 
 void UnitTestConvertNormalCNNum() {
@@ -77,11 +85,8 @@ void UnitTestInverseNormalize() {
 
 void UnitTestInverseNormalizeByInputFile(const string& file_name) {
   vector<string> test_cases;
-  ReadTestCases(file_name, test_cases);
+  ReadFileByLine(file_name, test_cases);
   for (const string& test_case: test_cases) {
-    if (test_case == "时间测试二零一八年五月二十三号上午十点十分") {
-      cout << "111" << endl;
-    }
     cout << test_case << endl;
     cout << InverseNormalize(test_case) << endl;
     cout << endl;
@@ -98,6 +103,6 @@ int main() {
   UnitTestConvertNormalCNNum();
   UnitTestCNNumTranslation();
   UnitTestInverseNormalize();
-  UnitTestInverseNormalizeByInputFile("susie-test-cases.txt");
+  UnitTestInverseNormalizeByInputFile("data/susie-test-cases.txt");
   return 0;
 }

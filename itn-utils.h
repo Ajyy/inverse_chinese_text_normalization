@@ -25,7 +25,7 @@ void SplitByCNChar(const std::string& s, std::vector<std::string>& tokens, const
  * @param file_name the file which stores test cases
  * @param test_cases the vector which has pair elements, Todo: and they store the test cases
  */
-void ReadTestCases(const std::string& file_name, std::vector<std::string>& test_cases);
+void ReadFileByLine(const std::string& file_name, std::vector<std::string>& test_cases);
 
 }
 
