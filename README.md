@@ -1,7 +1,7 @@
 # inverse_chinese_text_normalization
 将normalize过的中文文本，做逆向normalize。具体功能参考自[chinese_text_normalization](https://github.com/speechio/chinese_text_normalization)的逆向实现.
 
-代码思路参考我之前的项目：[chinese_number_recognition](https://github.com/Ajyy/chinese_number_recognition).
+代码思路可部分参考我之前项目的README.md部分：[chinese_number_recognition](https://github.com/Ajyy/chinese_number_recognition).
 
 测试文件[itn-test.cc](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/itn-test.cc)和[itn-utils-test.cc](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/itn-utils-test.cc), 请结合kaldi一起使用。
 
