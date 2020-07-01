@@ -12,10 +12,21 @@ void UnitTestConvertNoUnitCNNum() {
   KALDI_ASSERT(ConvertNoUnitCNNum("二零二零六二五") == "2020625");
 }
 
+void UnitTestIsValid() {
+  KALDI_ASSERT(!IsValid("八八十"));
+  KALDI_ASSERT(IsValid("八百八十八"));
+  KALDI_ASSERT(!IsValid("八八百"));
+}
+
 void UnitTestFindMaxUnit() {
   KALDI_ASSERT(FindMaxUnit("一千零一") == "千");
   KALDI_ASSERT(FindMaxUnit("一亿两千万") == "亿");
   KALDI_ASSERT(FindMaxUnit("一") == "个");
+}
+
+void UnitTestCheckDateKeyword() {
+  KALDI_ASSERT(CheckDateKeyword("十点十分", 3));
+  KALDI_ASSERT(!CheckDateKeyword("十点零四", 3));
 }
 
 void UnitTestFindCNNums() {
@@ -41,12 +52,12 @@ void UnitTestPreprocessSent() {
   KALDI_ASSERT(ProcessSent("两兩幺", "pre", ic_index) == "二二一");
   // Test for last order
   ic_index = {};
-  CheckIdiomAndCi("正负負點点", ic_index);
-  KALDI_ASSERT(ProcessSent("正负負點点", "last", ic_index) == "+--..");
+  CheckIdiomAndCi("正负負", ic_index);
+  KALDI_ASSERT(ProcessSent("正负負", "last", ic_index) == "正负負");
 }
 
 void UnitTestConvertNormalCNNum() {
-  KALDI_ASSERT(ConvertNormalCNNum("一千一十") == 1010);
+  KALDI_ASSERT(ConvertNormalCNNum("一千零一十") == 1010);
   KALDI_ASSERT(ConvertNormalCNNum("一百一十一") == 111);
   KALDI_ASSERT(ConvertNormalCNNum("一百一") == 110);
   KALDI_ASSERT(ConvertNormalCNNum("一亿一千万") == 110000000);
@@ -59,7 +70,7 @@ void UnitTestCNNumTranslation() {
   KALDI_ASSERT(CNNumTranslation("二零二零六二五") == "2020625");
 
   // Test for normal number
-  KALDI_ASSERT(CNNumTranslation("一千一十") == "1010");
+  KALDI_ASSERT(CNNumTranslation("一千零一十") == "1010");
   KALDI_ASSERT(CNNumTranslation("一百一十一") == "111");
   KALDI_ASSERT(CNNumTranslation("一百一") == "110");
   KALDI_ASSERT(CNNumTranslation("一亿一千万") == "110000000");
@@ -87,22 +98,26 @@ void UnitTestInverseNormalizeByInputFile(const string& file_name) {
   vector<string> test_cases;
   ReadFileByLine(file_name, test_cases);
   for (const string& test_case: test_cases) {
-    cout << test_case << endl;
-    cout << InverseNormalize(test_case) << endl;
+    cout << "Original: " << test_case << endl;
+    cout << "Result:   " << InverseNormalize(test_case) << endl;
     cout << endl;
   }
 }
+
 }  // end namespace itn.
 
 int main() {
   using namespace itn;
   UnitTestFindCNNums();
   UnitTestConvertNoUnitCNNum();
+  UnitTestIsValid();
+  UnitTestCheckDateKeyword();
   UnitTestFindMaxUnit();
   UnitTestPreprocessSent();
   UnitTestConvertNormalCNNum();
   UnitTestCNNumTranslation();
   UnitTestInverseNormalize();
   UnitTestInverseNormalizeByInputFile("data/susie-test-cases.txt");
+  UnitTestInverseNormalizeByInputFile("data/junyi-test-cases.txt");
   return 0;
 }

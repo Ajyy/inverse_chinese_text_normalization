@@ -1,0 +1,290 @@
+Original: 数字测试一万三千七百零二
+Result:   数字测试13702
+
+Original: 数字测试一二三四五六七八九十
+Result:   数字测试一二三四五六七八九十
+
+Original: 十九八七六五四三二一
+Result:   十九八七六五四三二一
+
+Original: 不管三七二十一
+Result:   不管三七二十一
+
+Original: 九九八十一难
+Result:   九九八十一难
+
+Original: 时间测试二零一八年五月二十三号上午十点十分
+Result:   时间测试2018年5月23号上午10点10分
+
+Original: 一万零七十六
+Result:   10076
+
+Original: 百分之三十二点六八
+Result:   32.68%
+
+Original: 比分测试十七比十六
+Result:   比分测试17:16
+
+Original: 比分测试三十七比十六
+Result:   比分测试37:16
+
+Original: 一点一
+Result:   1.1
+
+Original: 一点一滴
+Result:   一点一滴
+
+Original: 八九十
+Result:   八九十
+
+Original: 一个人一定要
+Result:   1个人一定要
+
+Original: 一五八七三六九零
+Result:   15873690
+
+Original: 二七九三零一二二
+Result:   27930122
+
+Original: 八五三零七四九九
+Result:   85307499
+
+Original: 二六一四九七八七
+Result:   26149787
+
+Original: 五二零六七八九十
+Result:   五二零六七八九十
+
+Original: 一五九六四八六二
+Result:   15964862
+
+Original: 四五六九八七二三
+Result:   45698723
+
+Original: 四八六一五九六四
+Result:   48615964
+
+Original: 十二二一九四五八
+Result:   十二二一九四五八
+
+Original: 一七八六四五八九
+Result:   17864589
+
+Original: 一二三加四五六
+Result:   123加456
+
+Original: 九七八六加三三八四
+Result:   9786加3384
+
+Original: 发电站每天发电三万零二十九度电
+Result:   发电站每天发电30029度电
+
+Original: 银行月交易总额七千九百零三亿元
+Result:   银行月交易总额790300000000元
+
+Original: 深圳每月平均工资在一万三千元
+Result:   深圳每月平均工资在13000元
+
+Original: 每月房租要交一千伍佰元
+Result:   每月房租要交1500元
+
+Original: 我每月交通费用在四百元左右
+Result:   我每月交通费用在400元左右
+
+Original: 本月开销费用是五万一千三百二十八元
+Result:   本月开销费用是51328元
+
+Original: 如果你中了五千万元奖金会分我一半吗
+Result:   如果你中了50000000元奖金会分我一半吗
+
+Original: 这个月工资我发了三千五百二十九元
+Result:   这个月工资我发了3529元
+
+Original: 学会了这个技能你至少可以涨薪五千元
+Result:   学会了这个技能你至少可以涨薪5000元
+
+Original: 我们的会议时间定在九点二十五分开始
+Result:   我们的会议时间定在9点25分开始
+
+Original: 上课时间是八点十五分请不要迟到
+Result:   上课时间是8点15分请不要迟到
+
+Original: 昨天你九点二十一分才到教室
+Result:   昨天你9点21分才到教室
+
+Original: 今天是二零一九年一月三十一号
+Result:   今天是2019年1月31号
+
+Original: 今年的除夕夜是二零一九年二月四号
+Result:   今年的除夕夜是2019年2月4号
+
+Original: 这根水管的长度不超过三十五米
+Result:   这根水管的长度不超过35米
+
+Original: 四百米是最短的长跑距离
+Result:   400米是最短的长跑距离
+
+Original: 最高的撑杆跳为十一米
+Result:   最高的撑杆跳为11米
+
+Original: 等会请在十二点零五分请通知我
+Result:   等会请在12点05分请通知我
+
+Original: 二十三点十五分开始
+Result:   23点15分开始
+
+Original: 你生日那天我会送你九百九十九朵玫瑰
+Result:   你生日那天我会送你999朵玫瑰
+
+Original: 给我一双鞋我可以跳九十六米远
+Result:   给我1双鞋我可以跳96米远
+
+Original: 虽然我们的身高相差三百五十六毫米也不影响我们交往
+Result:   虽然我们的身高相差356毫米也不影响我们交往
+
+Original: 我们班的最高总分为五百八十三分
+Result:   我们班的最高总分为583分
+
+Original: 今天考试老师多扣了我二十一分
+Result:   今天考试老师多扣了我21分
+
+Original: 我量过这张桌子总长为一点三七米
+Result:   我量过这张桌子总长为1.37米
+
+Original: 乘务员身高必须超过一百八十五公分
+Result:   乘务员身高必须超过185公分
+
+Original: 这台电脑分辨率为一零二四
+Result:   这台电脑分辨率为1024
+
+Original: 手机价格不超过一千五百元
+Result:   手机价格不超过1500元
+
+Original: 一百零一点二三
+Result:   101.23
+
+Original: 一百二十三点一一六
+Result:   123.116
+
+Original: 四百五十六点一四七
+Result:   456.147
+
+Original: 零点一五九四
+Result:   0.1594
+
+Original: 三点一四一五
+Result:   3.1415
+
+Original: 零点一一二二三三
+Result:   0.112233
+
+Original: 零点一
+Result:   0.1
+
+Original: 四万零一点九八七
+Result:   40001.987
+
+Original: 五十六点八七八
+Result:   56.878
+
+Original: 零点零零一二三
+Result:   0.00123
+
+Original: 零点零零零一
+Result:   0.0001
+
+Original: 零点九二零一五
+Result:   0.92015
+
+Original: 九百九十九点零零零一
+Result:   999.0001
+
+Original: 一万点一二三
+Result:   10000.123
+
+Original: 六百六十六点五五五
+Result:   666.555
+
+Original: 四百四十四点七八九
+Result:   444.789
+
+Original: 七百八十九点六六六
+Result:   789.666
+
+Original: 零点一二三四五
+Result:   0.12345
+
+Original: 一点零五六四九
+Result:   1.05649
+
+Original: 环比上调百分之一点八六
+Result:   环比上调1.86%
+
+Original: 环比分别下跌百分之三点四六及微涨百分之零点七零
+Result:   环比分别下跌3.46%及微涨0.70%
+
+Original: 单价在三万元的二手房购房个案当中
+Result:   单价在30000元的二手房购房个案当中
+
+Original: 六月仍有百分之七单价在三万元的房源
+Result:   6月仍有7%单价在30000元的房源
+
+Original: 最终也只是以总积分一分之差屈居第二
+Result:   最终也只是以总积分1分之差屈居第2
+
+Original: 中新网八月二十九日电今日
+Result:   中新网8月29日电今日
+
+Original: 自六月底呼和浩特市率先宣布取消限购后
+Result:   自6月底呼和浩特市率先宣布取消限购后
+
+Original: 仅一个多月的时间里
+Result:   仅1个多月的时间里
+
+Original: 除了北京上海广州深圳四个一线城市和三亚之外
+Result:   除了北京上海广州深圳4个一线城市和三亚之外
+
+Original: 四十六个限购城市当中
+Result:   46个限购城市当中
+
+Original: 四十一个已正式取消或变相放松了限购
+Result:   41个已正式取消或变相放松了限购
+
+Original: 其中包括对拥有一套住房并已结清相应购房贷款的家庭
+Result:   其中包括对拥有一套住房并已结清相应购房贷款的家庭
+
+Original: 这个后来被称为九三零新政策的措施
+Result:   这个后来被称为930新政策的措施
+
+Original: 今年有望超三百亿美元
+Result:   今年有望超30000000000美元
+
+Original: 就连一向看多的任志强
+Result:   就连一向看多的任志强
+
+Original: 近期也一反常态地发表看空言论
+Result:   近期也一反常态地发表看空言论
+
+Original: 这块黄金重达三百二十四点七五克
+Result:   这块黄金重达324.75克
+
+Original: 她出生于八六年八月十八日她弟弟出生于一九九五年三月一日
+Result:   她出生于86年8月18日她弟弟出生于1995年3月1日
+
+Original: 电影中梁朝伟扮演的陈永仁的编号二七一四九
+Result:   电影中梁朝伟扮演的陈永仁的编号27149
+
+Original: 现场有十二分之七的观众投出了赞成票
+Result:   现场有7/12的观众投出了赞成票
+
+Original: 随便来几个价格十二块五和三十四点五元和二十点一万
+Result:   随便来几个价格12块5和34.5元和20.1万
+
+Original: 明天有百分之六十二的概率降雨
+Result:   明天有62%的概率降雨
+
+Original: 这是固话零四二一三三四四一一二二
+Result:   这是固话042133441122
+
+Original: 这是手机八六一八五四四一三九一二一
+Result:   这是手机8618544139121
