@@ -1,25 +1,28 @@
 # inverse_chinese_text_normalization
-将normalize过的中文文本，做逆向normalize。具体功能参考自[chinese_text_normalization](https://github.com/speechio/chinese_text_normalization)的逆向实现.
+将normalize过的中文文本，做逆向normalize。具体功能参考自 [chinese_text_normalization](https://github.com/speechio/chinese_text_normalization)的逆向实现。
 
-代码思路参考我之前的项目：[chinese_number_recognition](https://github.com/Ajyy/chinese_number_recognition).
+代码思路可部分参考我之前项目的README.md部分：[chinese_number_recognition](https://github.com/Ajyy/chinese_number_recognition)。
 
-请结合kaldi一起使用。
+测试文件 [itn-test.cc](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/itn-test.cc) 和 [itn-utils-test.cc](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/itn-utils-test.cc) , 请结合kaldi一起使用。
 
 ## 代码规范与环境:
 
-遵循Google c++代码规范，参考[kaldi](https://github.com/kaldi-asr/kaldi)环境配置。
+遵循Google c++代码规范，参考 [kaldi](https://github.com/kaldi-asr/kaldi) 环境配置。
 
 ## 文件结构
-
-[data/idiom-and-ci.txt](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/data/idiom-and-ci.txt): 从[chinese-xinhua](https://github.com/pwxcoo/chinese-xinhua)收集的有关数字的成语与词语。
-
-[data/susie-test-cases.txt](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/data/susie-test-cases.txt): 一些测试样例。
 
 [itn.cc](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/itn.cc) / [itn.h](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/itn.h): 代码主体部分。
 
 [itn-utils.cc](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/itn-utils.cc) / [itn-utils.h](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/itn-utils.h): 通用代码。
 
 [itn-test.cc](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/itn-test.cc) / [itn-utils-test.cc](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/itn-utils-test.cc) : 测试代码。
+
+[some-test-cases-result](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/some-test-cases-result
+): 一些测试用例的结果。
+
+[data/idiom-and-ci.txt](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/data/idiom-and-ci.txt): 从 [chinese-xinhua](https://github.com/pwxcoo/chinese-xinhua) 收集的有关数字的成语与词语。
+
+[data/susie-test-cases.txt](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/data/susie-test-cases.txt) / [data/junyi-test-cases.txt](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/data/junyi-test-cases.txt) / [data/aishell-data.txt](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/data/aishell-data.txt): 一些测试样例。其中aishell-data是 [aishell1](http://www.aishelltech.com/kysjcp) 中抽取的包含数字的句子。
 
 ## 已完成部分
 
@@ -33,11 +36,11 @@
 |telephone|这是固话零四二一三三四四一一二二<br>这是手机八六一八五四四一三九一二一|这是固话042133441122<br>这是手机8618544139121|
 |fraction|现场有十二分之七的观众投出了赞成票|现场有7/12的观众投出了赞成票|
 
-可参考itn-test.cc文件内UnitTestInverseNormalize方法的测试用例。
+更多测试样例结果，请参考 [some-test-cases-result](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/some-test-cases-result
+) 。
 
 ## 待完成部分
 
 1. 更多单位支持，包括兆京垓秭穰沟涧正载。
-2. 支持星期，支持例如一千千的写法。
-2. 支持标点符号。
-3. 修改Bug。
+2. 支持例如一千千的写法。
+3. 支持标点符号。
