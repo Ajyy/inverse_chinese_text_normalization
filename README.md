@@ -17,7 +17,8 @@
 
 [itn-test.cc](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/itn-test.cc) / [itn-utils-test.cc](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/itn-utils-test.cc) : 测试代码。
 
-[some-test-cases-result](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/itn-test.cc): 一些测试用例的结果。
+[some-test-cases-result](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/some-test-cases-result
+): 一些测试用例的结果。
 
 [data/idiom-and-ci.txt](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/data/idiom-and-ci.txt): 从[chinese-xinhua](https://github.com/pwxcoo/chinese-xinhua)收集的有关数字的成语与词语。
 
@@ -34,6 +35,9 @@
 |percentage|明天有百分之六十二的概率降雨|明天有62％的概率降雨|
 |telephone|这是固话零四二一三三四四一一二二<br>这是手机八六一八五四四一三九一二一|这是固话042133441122<br>这是手机8618544139121|
 |fraction|现场有十二分之七的观众投出了赞成票|现场有7/12的观众投出了赞成票|
+
+更多测试样例结果，请参考[some-test-cases-result](https://github.com/Ajyy/inverse_chinese_text_normalization/blob/master/some-test-cases-result
+)。
 
 ## 待完成部分
 
