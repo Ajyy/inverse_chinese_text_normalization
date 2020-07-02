@@ -1,15 +1,38 @@
 #include "base/kaldi-common.h"
 #include "itn/itn.h"
 #include "itn/itn-utils.h"
+#include "cppjieba/Jieba.hpp"
+#include "limonp/Config.hpp"
 
 namespace itn {
 
 using namespace std;
 
+const char* const DICT_PATH = "jieba-dict/jieba.dict.utf8";
+const char* const HMM_PATH = "jieba-dict/hmm_model.utf8";
+const char* const USER_DICT_PATH = "jieba-dict/user.dict.utf8";
+const char* const IDF_PATH = "jieba-dict/idf.utf8";
+const char* const STOP_WORD_PATH = "jieba-dict/stop_words.utf8";
+
+cppjieba::Jieba jieba(DICT_PATH,
+                      HMM_PATH,
+                      USER_DICT_PATH,
+                      IDF_PATH,
+                      STOP_WORD_PATH);
+
 void UnitTestConvertNoUnitCNNum() {
   KALDI_ASSERT(ConvertNoUnitCNNum("一二三四五六七八") == "12345678");
   KALDI_ASSERT(ConvertNoUnitCNNum("八六一三五三零四九") == "861353049");
   KALDI_ASSERT(ConvertNoUnitCNNum("二零二零六二五") == "2020625");
+}
+
+void UnitTestProcessForSegment() {
+  KALDI_ASSERT(ProcessForSegment("这是 手机 八六 一八 五四 四一 三九 一二一") == "这是 手机 八六一八五四四一三九一二一");
+  KALDI_ASSERT(ProcessForSegment("明天 有 百分之六十 二 的 概率 降雨") == "明天 有 百分之六十二 的 概率 降雨");
+  KALDI_ASSERT(ProcessForSegment("随便 来 几个 价格 十二块 五 和 三十四点 五元 和 二十点 一万") == "随便 来 几个 价格 十二块 五 和 三十四点五元 和 二十点一万");
+  KALDI_ASSERT(ProcessForSegment("十二 分 之 七") == "十二分之七");
+  KALDI_ASSERT(ProcessForSegment("三十 二 点 七 四") == "三十二点七四");
+  KALDI_ASSERT(ProcessForSegment("一点 一") == "一点一");
 }
 
 void UnitTestIsValid() {
@@ -98,8 +121,14 @@ void UnitTestInverseNormalizeByInputFile(const string& file_name) {
   vector<string> test_cases;
   ReadFileByLine(file_name, test_cases);
   for (const string& test_case: test_cases) {
-    cout << "Original: " << test_case << endl;
-    cout << "Result:   " << InverseNormalize(test_case) << endl;
+    cout << "Original:         " << test_case << endl;
+    cout << "Result:           " << InverseNormalize(test_case) << endl;
+
+    vector<string> words;
+    jieba.Cut(test_case, words, true);
+    string seg_test_case = limonp::Join(words.begin(), words.end(), " ");
+    cout << "After Segmenting: " << seg_test_case << endl;
+    cout << "Result:           " << InverseNormalize(seg_test_case) << endl;
     cout << endl;
   }
 }
@@ -116,6 +145,7 @@ int main() {
   UnitTestPreprocessSent();
   UnitTestConvertNormalCNNum();
   UnitTestCNNumTranslation();
+  UnitTestProcessForSegment();
   UnitTestInverseNormalize();
   UnitTestInverseNormalizeByInputFile("data/susie-test-cases.txt");
   UnitTestInverseNormalizeByInputFile("data/junyi-test-cases.txt");

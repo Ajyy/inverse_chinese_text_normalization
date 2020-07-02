@@ -1,290 +1,464 @@
-Original: 数字测试一万三千七百零二
-Result:   数字测试13702
-
-Original: 数字测试一二三四五六七八九十
-Result:   数字测试一二三四五六七八九十
-
-Original: 十九八七六五四三二一
-Result:   十九八七六五四三二一
-
-Original: 不管三七二十一
-Result:   不管三七二十一
-
-Original: 九九八十一难
-Result:   九九八十一难
-
-Original: 时间测试二零一八年五月二十三号上午十点十分
-Result:   时间测试2018年5月23号上午10点10分
-
-Original: 一万零七十六
-Result:   10076
-
-Original: 百分之三十二点六八
-Result:   32.68%
-
-Original: 比分测试十七比十六
-Result:   比分测试17:16
-
-Original: 比分测试三十七比十六
-Result:   比分测试37:16
-
-Original: 一点一
-Result:   1.1
-
-Original: 一点一滴
-Result:   一点一滴
-
-Original: 八九十
-Result:   八九十
-
-Original: 一个人一定要
-Result:   1个人一定要
-
-Original: 一五八七三六九零
-Result:   15873690
-
-Original: 二七九三零一二二
-Result:   27930122
-
-Original: 八五三零七四九九
-Result:   85307499
-
-Original: 二六一四九七八七
-Result:   26149787
-
-Original: 五二零六七八九十
-Result:   五二零六七八九十
-
-Original: 一五九六四八六二
-Result:   15964862
-
-Original: 四五六九八七二三
-Result:   45698723
-
-Original: 四八六一五九六四
-Result:   48615964
-
-Original: 十二二一九四五八
-Result:   十二二一九四五八
-
-Original: 一七八六四五八九
-Result:   17864589
-
-Original: 一二三加四五六
-Result:   123加456
-
-Original: 九七八六加三三八四
-Result:   9786加3384
-
-Original: 发电站每天发电三万零二十九度电
-Result:   发电站每天发电30029度电
-
-Original: 银行月交易总额七千九百零三亿元
-Result:   银行月交易总额790300000000元
-
-Original: 深圳每月平均工资在一万三千元
-Result:   深圳每月平均工资在13000元
-
-Original: 每月房租要交一千伍佰元
-Result:   每月房租要交1500元
-
-Original: 我每月交通费用在四百元左右
-Result:   我每月交通费用在400元左右
-
-Original: 本月开销费用是五万一千三百二十八元
-Result:   本月开销费用是51328元
-
-Original: 如果你中了五千万元奖金会分我一半吗
-Result:   如果你中了50000000元奖金会分我一半吗
-
-Original: 这个月工资我发了三千五百二十九元
-Result:   这个月工资我发了3529元
-
-Original: 学会了这个技能你至少可以涨薪五千元
-Result:   学会了这个技能你至少可以涨薪5000元
-
-Original: 我们的会议时间定在九点二十五分开始
-Result:   我们的会议时间定在9点25分开始
-
-Original: 上课时间是八点十五分请不要迟到
-Result:   上课时间是8点15分请不要迟到
-
-Original: 昨天你九点二十一分才到教室
-Result:   昨天你9点21分才到教室
-
-Original: 今天是二零一九年一月三十一号
-Result:   今天是2019年1月31号
-
-Original: 今年的除夕夜是二零一九年二月四号
-Result:   今年的除夕夜是2019年2月4号
-
-Original: 这根水管的长度不超过三十五米
-Result:   这根水管的长度不超过35米
-
-Original: 四百米是最短的长跑距离
-Result:   400米是最短的长跑距离
-
-Original: 最高的撑杆跳为十一米
-Result:   最高的撑杆跳为11米
-
-Original: 等会请在十二点零五分请通知我
-Result:   等会请在12点05分请通知我
-
-Original: 二十三点十五分开始
-Result:   23点15分开始
-
-Original: 你生日那天我会送你九百九十九朵玫瑰
-Result:   你生日那天我会送你999朵玫瑰
-
-Original: 给我一双鞋我可以跳九十六米远
-Result:   给我1双鞋我可以跳96米远
-
-Original: 虽然我们的身高相差三百五十六毫米也不影响我们交往
-Result:   虽然我们的身高相差356毫米也不影响我们交往
-
-Original: 我们班的最高总分为五百八十三分
-Result:   我们班的最高总分为583分
-
-Original: 今天考试老师多扣了我二十一分
-Result:   今天考试老师多扣了我21分
-
-Original: 我量过这张桌子总长为一点三七米
-Result:   我量过这张桌子总长为1.37米
-
-Original: 乘务员身高必须超过一百八十五公分
-Result:   乘务员身高必须超过185公分
-
-Original: 这台电脑分辨率为一零二四
-Result:   这台电脑分辨率为1024
-
-Original: 手机价格不超过一千五百元
-Result:   手机价格不超过1500元
-
-Original: 一百零一点二三
-Result:   101.23
-
-Original: 一百二十三点一一六
-Result:   123.116
-
-Original: 四百五十六点一四七
-Result:   456.147
-
-Original: 零点一五九四
-Result:   0.1594
-
-Original: 三点一四一五
-Result:   3.1415
-
-Original: 零点一一二二三三
-Result:   0.112233
-
-Original: 零点一
-Result:   0.1
-
-Original: 四万零一点九八七
-Result:   40001.987
-
-Original: 五十六点八七八
-Result:   56.878
-
-Original: 零点零零一二三
-Result:   0.00123
-
-Original: 零点零零零一
-Result:   0.0001
-
-Original: 零点九二零一五
-Result:   0.92015
-
-Original: 九百九十九点零零零一
-Result:   999.0001
-
-Original: 一万点一二三
-Result:   10000.123
-
-Original: 六百六十六点五五五
-Result:   666.555
-
-Original: 四百四十四点七八九
-Result:   444.789
-
-Original: 七百八十九点六六六
-Result:   789.666
-
-Original: 零点一二三四五
-Result:   0.12345
-
-Original: 一点零五六四九
-Result:   1.05649
-
-Original: 环比上调百分之一点八六
-Result:   环比上调1.86%
-
-Original: 环比分别下跌百分之三点四六及微涨百分之零点七零
-Result:   环比分别下跌3.46%及微涨0.70%
-
-Original: 单价在三万元的二手房购房个案当中
-Result:   单价在30000元的二手房购房个案当中
-
-Original: 六月仍有百分之七单价在三万元的房源
-Result:   6月仍有7%单价在30000元的房源
-
-Original: 最终也只是以总积分一分之差屈居第二
-Result:   最终也只是以总积分1分之差屈居第2
-
-Original: 中新网八月二十九日电今日
-Result:   中新网8月29日电今日
-
-Original: 自六月底呼和浩特市率先宣布取消限购后
-Result:   自6月底呼和浩特市率先宣布取消限购后
-
-Original: 仅一个多月的时间里
-Result:   仅1个多月的时间里
-
-Original: 除了北京上海广州深圳四个一线城市和三亚之外
-Result:   除了北京上海广州深圳4个一线城市和三亚之外
-
-Original: 四十六个限购城市当中
-Result:   46个限购城市当中
-
-Original: 四十一个已正式取消或变相放松了限购
-Result:   41个已正式取消或变相放松了限购
-
-Original: 其中包括对拥有一套住房并已结清相应购房贷款的家庭
-Result:   其中包括对拥有一套住房并已结清相应购房贷款的家庭
-
-Original: 这个后来被称为九三零新政策的措施
-Result:   这个后来被称为930新政策的措施
-
-Original: 今年有望超三百亿美元
-Result:   今年有望超30000000000美元
-
-Original: 就连一向看多的任志强
-Result:   就连一向看多的任志强
-
-Original: 近期也一反常态地发表看空言论
-Result:   近期也一反常态地发表看空言论
-
-Original: 这块黄金重达三百二十四点七五克
-Result:   这块黄金重达324.75克
-
-Original: 她出生于八六年八月十八日她弟弟出生于一九九五年三月一日
-Result:   她出生于86年8月18日她弟弟出生于1995年3月1日
-
-Original: 电影中梁朝伟扮演的陈永仁的编号二七一四九
-Result:   电影中梁朝伟扮演的陈永仁的编号27149
-
-Original: 现场有十二分之七的观众投出了赞成票
-Result:   现场有7/12的观众投出了赞成票
-
-Original: 随便来几个价格十二块五和三十四点五元和二十点一万
-Result:   随便来几个价格12块5和34.5元和20.1万
-
-Original: 明天有百分之六十二的概率降雨
-Result:   明天有62%的概率降雨
-
-Original: 这是固话零四二一三三四四一一二二
-Result:   这是固话042133441122
-
-Original: 这是手机八六一八五四四一三九一二一
-Result:   这是手机8618544139121
+Original:         数字测试一万三千七百零二
+Result:           数字测试13702
+After Segmenting: 数字 测试 一万 三千七百 零二
+Result:           数字 测试 13702
+
+Original:         不管三七二十一
+Result:           不管三七二十一
+After Segmenting: 不管三七二十一
+Result:           不管三七二十一
+
+Original:         九九八十一难
+Result:           九九八十一难
+After Segmenting: 九九八十一 难
+Result:           九九八十一 难
+
+Original:         时间测试二零一八年五月二十三号上午十点十分
+Result:           时间测试2018年5月23号上午10点10分
+After Segmenting: 时间 测试 二零一 八年 五月 二十三 号 上午 十点 十分
+Result:           时间 测试 2018年 5月 23 号 上午 10点10分
+
+Original:         一万零七十六
+Result:           10076
+After Segmenting: 一万 零 七十六
+Result:           10076
+
+Original:         百分之三十二点六八
+Result:           32.68%
+After Segmenting: 百分之三十 二点六 八
+Result:           32.68%
+
+Original:         比分测试十七比十六
+Result:           比分测试17:16
+After Segmenting: 比分 测试 十七 比 十六
+Result:           比分 测试 17 比 16
+
+Original:         比分测试三十七比十六
+Result:           比分测试37:16
+After Segmenting: 比分 测试 三十七 比 十六
+Result:           比分 测试 37 比 16
+
+Original:         一点一
+Result:           1.1
+After Segmenting: 一点 一
+Result:           1.1
+
+Original:         一点一滴
+Result:           一点一滴
+After Segmenting: 一点一滴
+Result:           一点一滴
+
+Original:         八九十
+Result:           八九十
+After Segmenting: 八九十
+Result:           八九十
+
+Original:         一个人一定要
+Result:           1个人一定要
+After Segmenting: 一个 人 一定 要
+Result:           1个 人 一定 要
+
+Original:         一五八七三六九零
+Result:           15873690
+After Segmenting: 一五 八七 三六九 零
+Result:           15873690
+
+Original:         二七九三零一二二
+Result:           27930122
+After Segmenting: 二七 九三 零 一二 二
+Result:           27930122
+
+Original:         八五三零七四九九
+Result:           85307499
+After Segmenting: 八五 三 零七 四 九九
+Result:           85307499
+
+Original:         二六一四九七八七
+Result:           26149787
+After Segmenting: 二六 一四 九七 八七
+Result:           26149787
+
+Original:         一五九六四八六二
+Result:           15964862
+After Segmenting: 一五 九六 四八 六二
+Result:           15964862
+
+Original:         四五六九八七二三
+Result:           45698723
+After Segmenting: 四五 六九 八七 二三
+Result:           45698723
+
+Original:         四八六一五九六四
+Result:           48615964
+After Segmenting: 四八 六一 五九 六四
+Result:           48615964
+
+Original:         一七八六四五八九
+Result:           17864589
+After Segmenting: 一 七八 六 四五 八九
+Result:           17864589
+
+Original:         一二三加四五六
+Result:           123加456
+After Segmenting: 一二三 加四 五六
+Result:           123 加456
+
+Original:         九七八六加三三八四
+Result:           9786加3384
+After Segmenting: 九 七八 六加 三 三八 四
+Result:           9786加 3384
+
+Original:         发电站每天发电三万零二十九度电
+Result:           发电站每天发电30029度电
+After Segmenting: 发电站 每天 发电 三万 零 二十九 度电
+Result:           发电站 每天 发电 30029 度电
+
+Original:         银行月交易总额七千九百零三亿元
+Result:           银行月交易总额七千九百零三亿元
+After Segmenting: 银行 月 交易 总额 七千 九百 零三 亿元
+Result:           银行 月 交易 总额 七千九百零三亿元
+
+Original:         深圳每月平均工资在一万三千元
+Result:           深圳每月平均工资在13000元
+After Segmenting: 深圳 每月 平均工资 在 一万三千 元
+Result:           深圳 每月 平均工资 在 13000 元
+
+Original:         每月房租要交一千伍佰元
+Result:           每月房租要交1500元
+After Segmenting: 每月 房租 要交 一千 伍佰元
+Result:           每月 房租 要交 1500元
+
+Original:         我每月交通费用在四百元左右
+Result:           我每月交通费用在400元左右
+After Segmenting: 我 每月 交通 费用 在 四百元 左右
+Result:           我 每月 交通 费用 在 400元 左右
+
+Original:         本月开销费用是五万一千三百二十八元
+Result:           本月开销费用是51328元
+After Segmenting: 本月 开销 费用 是 五万 一千三百 二十八 元
+Result:           本月 开销 费用 是 51328 元
+
+Original:         如果你中了五千万元奖金会分我一半吗
+Result:           如果你中了五千万元奖金会分我一半吗
+After Segmenting: 如果 你 中 了 五千万元 奖金 会分 我 一半 吗
+Result:           如果 你 中 了 五千万元 奖金 会分 我 一半 吗
+
+Original:         这个月工资我发了三千五百二十九元
+Result:           这个月工资我发了3529元
+After Segmenting: 这个 月工资 我发 了 三千五百 二十九 元
+Result:           这个 月工资 我发 了 3529 元
+
+Original:         学会了这个技能你至少可以涨薪五千元
+Result:           学会了这个技能你至少可以涨薪5000元
+After Segmenting: 学会 了 这个 技能 你 至少 可以 涨薪 五千元
+Result:           学会 了 这个 技能 你 至少 可以 涨薪 5000元
+
+Original:         我们的会议时间定在九点二十五分开始
+Result:           我们的会议时间定在9点25分开始
+After Segmenting: 我们 的 会议 时间 定 在 九点 二十五分 开始
+Result:           我们 的 会议 时间 定 在 9点25分 开始
+
+Original:         上课时间是八点十五分请不要迟到
+Result:           上课时间是8点15分请不要迟到
+After Segmenting: 上课 时间 是 八点 十五分 请 不要 迟到
+Result:           上课 时间 是 8点15分 请 不要 迟到
+
+Original:         昨天你九点二十一分才到教室
+Result:           昨天你9点21分才到教室
+After Segmenting: 昨天 你 九点 二十一分 才 到 教室
+Result:           昨天 你 9点21分 才 到 教室
+
+Original:         今天是二零一九年一月三十一号
+Result:           今天是2019年1月31号
+After Segmenting: 今天 是 二零一 九年 一月 三十一 号
+Result:           今天 是 2019年 1月 31 号
+
+Original:         今年的除夕夜是二零一九年二月四号
+Result:           今年的除夕夜是2019年2月4号
+After Segmenting: 今年 的 除夕夜 是 二零一 九年 二月 四号
+Result:           今年 的 除夕夜 是 2019年 2月 4号
+
+Original:         这根水管的长度不超过三十五米
+Result:           这根水管的长度不超过35米
+After Segmenting: 这根 水管 的 长度 不 超过 三十五米
+Result:           这根 水管 的 长度 不 超过 35米
+
+Original:         四百米是最短的长跑距离
+Result:           400米是最短的长跑距离
+After Segmenting: 四百米 是 最 短 的 长跑 距离
+Result:           400米 是 最 短 的 长跑 距离
+
+Original:         最高的撑杆跳为十一米
+Result:           最高的撑杆跳为11米
+After Segmenting: 最高 的 撑杆跳 为 十一 米
+Result:           最高 的 撑杆跳 为 11 米
+
+Original:         等会请在十二点零五分请通知我
+Result:           等会请在12点05分请通知我
+After Segmenting: 等 会 请 在 十二点 零五分 请 通知 我
+Result:           等 会 请 在 12点05分 请 通知 我
+
+Original:         二十三点十五分开始
+Result:           23点15分开始
+After Segmenting: 二 十三点 十五分 开始
+Result:           23点15分 开始
+
+Original:         你生日那天我会送你九百九十九朵玫瑰
+Result:           你生日那天我会送你999朵玫瑰
+After Segmenting: 你 生日 那天 我会 送 你 九百九十九 朵玫瑰
+Result:           你 生日 那天 我会 送 你 999 朵玫瑰
+
+Original:         给我一双鞋我可以跳九十六米远
+Result:           给我1双鞋我可以跳96米远
+After Segmenting: 给 我 一双 鞋 我 可以 跳 九十六 米 远
+Result:           给 我 1双 鞋 我 可以 跳 96 米 远
+
+Original:         虽然我们的身高相差三百五十六毫米也不影响我们交往
+Result:           虽然我们的身高相差356毫米也不影响我们交往
+After Segmenting: 虽然 我们 的 身高 相差 三百五十六 毫米 也 不 影响 我们 交往
+Result:           虽然 我们 的 身高 相差 356 毫米 也 不 影响 我们 交往
+
+Original:         我们班的最高总分为五百八十三分
+Result:           我们班的最高总分为583分
+After Segmenting: 我们 班 的 最高 总 分为 五百 八十 三分
+Result:           我们 班 的 最高 总 分为 583分
+
+Original:         今天考试老师多扣了我二十一分
+Result:           今天考试老师多扣了我21分
+After Segmenting: 今天 考试 老师 多扣 了 我 二十一分
+Result:           今天 考试 老师 多扣 了 我 21分
+
+Original:         我量过这张桌子总长为一点三七米
+Result:           我量过这张桌子总长为1.37米
+After Segmenting: 我量 过 这张 桌子 总长 为 一点 三 七米
+Result:           我量 过 这张 桌子 总长 为 1.37米
+
+Original:         乘务员身高必须超过一百八十五公分
+Result:           乘务员身高必须超过185公分
+After Segmenting: 乘务员 身高 必须 超过 一百八十 五 公分
+Result:           乘务员 身高 必须 超过 185 公分
+
+Original:         这台电脑分辨率为一零二四
+Result:           这台电脑分辨率为1024
+After Segmenting: 这台 电脑 分辨率 为 一零 二四
+Result:           这台 电脑 分辨率 为 1024
+
+Original:         手机价格不超过一千五百元
+Result:           手机价格不超过1500元
+After Segmenting: 手机 价格 不 超过 一千五百元
+Result:           手机 价格 不 超过 1500元
+
+Original:         一百零一点二三
+Result:           101.23
+After Segmenting: 一百 零 一点 二三
+Result:           101.23
+
+Original:         一百二十三点一一六
+Result:           123.116
+After Segmenting: 一百二十 三点 一一 六
+Result:           123.116
+
+Original:         四百五十六点一四七
+Result:           456.147
+After Segmenting: 四百五十 六点 一 四七
+Result:           456.147
+
+Original:         零点一五九四
+Result:           0.1594
+After Segmenting: 零点 一五 九四
+Result:           0.1594
+
+Original:         三点一四一五
+Result:           3.1415
+After Segmenting: 三点 一四 一五
+Result:           3.1415
+
+Original:         零点一一二二三三
+Result:           0.112233
+After Segmenting: 零点 一一二 二三 三
+Result:           0.112233
+
+Original:         零点一
+Result:           0.1
+After Segmenting: 零点 一
+Result:           0.1
+
+Original:         四万零一点九八七
+Result:           40001.987
+After Segmenting: 四万 零 一点 九 八七
+Result:           40001.987
+
+Original:         五十六点八七八
+Result:           56.878
+After Segmenting: 五十六 点 八七 八
+Result:           56.878
+
+Original:         零点零零一二三
+Result:           0.00123
+After Segmenting: 零点 零零 一二三
+Result:           0.00123
+
+Original:         零点零零零一
+Result:           0.0001
+After Segmenting: 零点 零零 零一
+Result:           0.0001
+
+Original:         零点九二零一五
+Result:           0.92015
+After Segmenting: 零点 九二 零 一五
+Result:           0.92015
+
+Original:         九百九十九点零零零一
+Result:           999.0001
+After Segmenting: 九百九十九 点 零零 零一
+Result:           999.0001
+
+Original:         一万点一二三
+Result:           10000.123
+After Segmenting: 一万 点 一二三
+Result:           10000.123
+
+Original:         六百六十六点五五五
+Result:           666.555
+After Segmenting: 六百六十 六点 五 五五
+Result:           666.555
+
+Original:         四百四十四点七八九
+Result:           444.789
+After Segmenting: 四百 四十四 点 七八 九
+Result:           444.789
+
+Original:         七百八十九点六六六
+Result:           789.666
+After Segmenting: 七百 八十九 点 六六六
+Result:           789.666
+
+Original:         零点一二三四五
+Result:           0.12345
+After Segmenting: 零点 一二三四五
+Result:           0.12345
+
+Original:         一点零五六四九
+Result:           1.05649
+After Segmenting: 一点 零 五六 四九
+Result:           1.05649
+
+Original:         环比上调百分之一点八六
+Result:           环比上调1.86%
+After Segmenting: 环比 上调 百分之一点 八六
+Result:           环比 上调 1.86%
+
+Original:         环比分别下跌百分之三点四六及微涨百分之零点七零
+Result:           环比分别下跌3.46%及微涨0.70%
+After Segmenting: 环比 分别 下跌 百分之三点 四六 及 微涨 百分之零点 七零
+Result:           环比 分别 下跌 3.46% 及 微涨 0.70%
+
+Original:         单价在三万元的二手房购房个案当中
+Result:           单价在30000元的二手房购房个案当中
+After Segmenting: 单价 在 三万元 的 二手房 购房 个案 当中
+Result:           单价 在 30000元 的 二手房 购房 个案 当中
+
+Original:         六月仍有百分之七单价在三万元的房源
+Result:           6月仍有7%单价在30000元的房源
+After Segmenting: 六月 仍 有 百分之七 单价 在 三万元 的 房源
+Result:           6月 仍 有 7% 单价 在 30000元 的 房源
+
+Original:         最终也只是以总积分一分之差屈居第二
+Result:           最终也只是以总积分1分之差屈居第2
+After Segmenting: 最终 也 只是 以 总 积分 一分之差 屈居 第二
+Result:           最终 也 只是 以 总 积分 1分之差 屈居 第2
+
+Original:         中新网八月二十九日电今日
+Result:           中新网8月29日电今日
+After Segmenting: 中新网 八月 二十九日 电 今日
+Result:           中新网 8月 29日 电 今日
+
+Original:         自六月底呼和浩特市率先宣布取消限购后
+Result:           自6月底呼和浩特市率先宣布取消限购后
+After Segmenting: 自 六月 底 呼和浩特市 率先 宣布 取消 限购 后
+Result:           自 6月 底 呼和浩特市 率先 宣布 取消 限购 后
+
+Original:         仅一个多月的时间里
+Result:           仅1个多月的时间里
+After Segmenting: 仅 一个多月 的 时间 里
+Result:           仅 1个多月 的 时间 里
+
+Original:         除了北京上海广州深圳四个一线城市和三亚之外
+Result:           除了北京上海广州深圳4个一线城市和三亚之外
+After Segmenting: 除了 北京 上海 广州 深圳 四个 一线 城市 和 三亚 之外
+Result:           除了 北京 上海 广州 深圳 4个 一线 城市 和 三亚 之外
+
+Original:         四十六个限购城市当中
+Result:           46个限购城市当中
+After Segmenting: 四十六个 限购 城市 当中
+Result:           46个 限购 城市 当中
+
+Original:         四十一个已正式取消或变相放松了限购
+Result:           41个已正式取消或变相放松了限购
+After Segmenting: 四十一个 已 正式 取消 或 变相 放松 了 限购
+Result:           41个 已 正式 取消 或 变相 放松 了 限购
+
+Original:         其中包括对拥有一套住房并已结清相应购房贷款的家庭
+Result:           其中包括对拥有一套住房并已结清相应购房贷款的家庭
+After Segmenting: 其中 包括 对 拥有 一套 住房 并 已 结清 相应 购房 贷款 的 家庭
+Result:           其中 包括 对 拥有 1套 住房 并 已 结清 相应 购房 贷款 的 家庭
+
+Original:         这个后来被称为九三零新政策的措施
+Result:           这个后来被称为930新政策的措施
+After Segmenting: 这个 后来 被 称为 九三 零新 政策 的 措施
+Result:           这个 后来 被 称为 930新 政策 的 措施
+
+Original:         今年有望超三百亿美元
+Result:           今年有望超三百亿美元
+After Segmenting: 今年 有望 超 三百 亿美元
+Result:           今年 有望 超 三百亿美元
+
+Original:         就连一向看多的任志强
+Result:           就连一向看多的任志强
+After Segmenting: 就 连 一向 看多 的 任志强
+Result:           就 连 一向 看多 的 任志强
+
+Original:         近期也一反常态地发表看空言论
+Result:           近期也一反常态地发表看空言论
+After Segmenting: 近期 也 一反常态 地 发表 看空 言论
+Result:           近期 也 一反常态 地 发表 看空 言论
+
+Original:         这块黄金重达三百二十四点七五克
+Result:           这块黄金重达324.75克
+After Segmenting: 这块 黄金 重达 三百二十四 点 七五 克
+Result:           这块 黄金 重达 324.75 克
+
+Original:         她出生于八六年八月十八日她弟弟出生于一九九五年三月一日
+Result:           她出生于86年8月18日她弟弟出生于1995年3月1日
+After Segmenting: 她 出 生于 八 六年 八月 十八日 她 弟弟 出 生于 一九九五年 三月 一日
+Result:           她 出 生于 86年 8月 18日 她 弟弟 出 生于 1995年 3月 1日
+
+Original:         电影中梁朝伟扮演的陈永仁的编号二七一四九
+Result:           电影中梁朝伟扮演的陈永仁的编号27149
+After Segmenting: 电影 中 梁朝伟 扮演 的 陈永仁 的 编号 二七 一 四九
+Result:           电影 中 梁朝伟 扮演 的 陈永仁 的 编号 27149
+
+Original:         现场有十二分之七的观众投出了赞成票
+Result:           现场有7/12的观众投出了赞成票
+After Segmenting: 现场 有 十二分 之 七 的 观众 投出 了 赞成票
+Result:           现场 有 7/12 的 观众 投出 了 赞成票
+
+Original:         随便来几个价格十二块五和三十四点五元和二十点一万
+Result:           随便来几个价格12块5和34.5元和20.1万
+After Segmenting: 随便 来 几个 价格 十二块 五 和 三十四点 五元 和 二十点 一万
+Result:           随便 来 几个 价格 12块 5 和 34.5元 和 20.1万
+
+Original:         明天有百分之六十二的概率降雨
+Result:           明天有62%的概率降雨
+After Segmenting: 明天 有 百分之六十 二 的 概率 降雨
+Result:           明天 有 62% 的 概率 降雨
+
+Original:         这是固话零四二一三三四四一一二二
+Result:           这是固话042133441122
+After Segmenting: 这是 固话 零 四二一 三三四四 一一二 二
+Result:           这是 固话 042133441122
+
+Original:         这是手机八六一八五四四一三九一二一
+Result:           这是手机8618544139121
+After Segmenting: 这是 手机 八六 一八 五四 四一 三九 一二一
+Result:           这是 手机 8618544139121

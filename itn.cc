@@ -44,6 +44,41 @@ const vector<string> DATE_KEYWORD_AFTER = {
     "分", "钟"
 };
 
+string ProcessForSegment(const string& sent) {
+  string processed_sent;
+  int last_index = 0;
+  for (int i = 0; i < sent.length(); i++) {
+    if (sent[i] == ' ') {
+      bool delete_space = false;
+      if (i < sent.length() - CHINESE_CHAR_LEN && i > CHINESE_CHAR_LEN - 1) {
+        string pre_char = sent.substr(i - CHINESE_CHAR_LEN, CHINESE_CHAR_LEN);
+        string after_char = sent.substr(i + 1, CHINESE_CHAR_LEN);
+        if (((BASE_NUMBER_MAP_TABLE.count(pre_char) || UNIT_MAP_TABLE.count(pre_char) || pre_char == "点" || pre_char == "點" || BIG_TO_SMALL.count(pre_char) || PRE_SPACIAL_MAP_TABLE.count(pre_char))
+            && (BASE_NUMBER_MAP_TABLE.count(after_char) || UNIT_MAP_TABLE.count(after_char) || after_char == "点" || after_char == "點") || BIG_TO_SMALL.count(after_char) || PRE_SPACIAL_MAP_TABLE.count(after_char))
+            || (pre_char == "分" && after_char == "之")
+            || i < sent.length() - 2 * CHINESE_CHAR_LEN && sent.substr(i + 1, 2 * CHINESE_CHAR_LEN) == "分之"
+            || i < sent.length() - 2 * CHINESE_CHAR_LEN - 1 && sent.substr(i + 1, CHINESE_CHAR_LEN) + sent.substr(i + 2 + CHINESE_CHAR_LEN, CHINESE_CHAR_LEN) == "分之"
+            || i > 2 * CHINESE_CHAR_LEN - 1 && sent.substr(i - 2 * CHINESE_CHAR_LEN, 2 * CHINESE_CHAR_LEN) == "分之"
+            || i > 2 * CHINESE_CHAR_LEN && sent.substr(i - 2 * CHINESE_CHAR_LEN - 1, CHINESE_CHAR_LEN) + sent.substr(i - CHINESE_CHAR_LEN, CHINESE_CHAR_LEN) == "分之") {
+          processed_sent += sent.substr(last_index, i - last_index);
+          last_index = i + 1;
+          delete_space = true;
+        }
+      }
+
+      if (!delete_space) {
+        processed_sent += sent.substr(last_index, i - last_index + 1);
+        last_index = i + 1;
+      }
+    }
+  }
+
+  if (last_index < sent.length())
+    processed_sent += sent.substr(last_index, sent.length() - last_index);
+
+  return processed_sent;
+}
+
 bool IsValid(const std::string& cn_num) {
   // If the base number appears continuously and there is at least one unit, then it is not valid
   bool has_cont_base_num = false;
@@ -122,10 +157,11 @@ void FindCNNums(const string& sent, vector<pair<string, int>> &nums_info, vector
   string last_char;
   bool check_dian = false;
   while (i + CHINESE_CHAR_LEN - 1 < sent.length()) {
-    if (find(ic_index.begin(), ic_index.end(), i) != ic_index.end()) {
+    while (sent[i] == ' ')
+      i++;
+
+    while (find(ic_index.begin(), ic_index.end(), i) != ic_index.end())
       i += CHINESE_CHAR_LEN;
-      continue;
-    }
 
     string cur_cn_char = sent.substr(i, CHINESE_CHAR_LEN);
     // Test for 点
@@ -229,6 +265,12 @@ string ProcessSent(const string &sent, const string& order, vector<int> &ic_inde
   string processed_sent;
   string last_num;
   for (int i = 0; i < sent.length(); i += CHINESE_CHAR_LEN) {
+    // For space
+    while (sent[i] == ' ') {
+      i++;
+      processed_sent += " ";
+    }
+
     // Ignore the idiom and ci (词语)
     if (find(ic_index.begin(), ic_index.end(), i) != ic_index.end()) {
       processed_sent += sent.substr(i, CHINESE_CHAR_LEN);
@@ -305,12 +347,15 @@ string InverseNormalize(const string& sent) {
   if (idiom_and_ci.empty())
     ReadFileByLine("data/idiom-and-ci.txt", idiom_and_ci);
 
+  // Process for segmenting
+  string processed_sent = ProcessForSegment(sent);
+
   // Get the information of idiom and ci (词语) in the sentence
   vector<int> ic_index;
-  CheckIdiomAndCi(sent, ic_index);
+  CheckIdiomAndCi(processed_sent, ic_index);
 
   // Process the sentence to translate from traditional to simplified, etc
-  string processed_sent = ProcessSent(sent, "pre", ic_index);
+  processed_sent = ProcessSent(processed_sent, "pre", ic_index);
   vector<pair<string, int>> nums_info;
 
   // Get the number information in the sentence, including the start index and the number string
@@ -320,7 +365,17 @@ string InverseNormalize(const string& sent) {
   int left_idx = 0;
   string result;
   for (const pair<string, int>& num_info: nums_info) {
-    result += (processed_sent.substr(left_idx, num_info.second - left_idx) + CNNumTranslation(num_info.first));
+    result += processed_sent.substr(left_idx, num_info.second - left_idx);
+    string translation_result = CNNumTranslation(num_info.first);
+    if ((translation_result.length() > num_info.first.length() / CHINESE_CHAR_LEN
+        && translation_result.length() > 5)
+        || result.length() >= 2 * CHINESE_CHAR_LEN && result.substr(result.length() - CHINESE_CHAR_LEN, CHINESE_CHAR_LEN) == "点"
+            && (BASE_NUMBER_MAP_TABLE.count(result.substr(result.length() - 2 * CHINESE_CHAR_LEN, CHINESE_CHAR_LEN))
+                || UNIT_MAP_TABLE.count(result.substr(result.length() - 2 * CHINESE_CHAR_LEN, CHINESE_CHAR_LEN))))
+      result += num_info.first;
+    else
+      result += translation_result;
+
     left_idx = num_info.second + num_info.first.length();
   }
 

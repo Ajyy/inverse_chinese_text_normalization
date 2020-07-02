@@ -16,6 +16,13 @@ namespace itn {
 #define CHINESE_CHAR_LEN 3  //utf-8
 
 /***
+ * Combine the space between chinese number or units
+ * @param input sentence
+ * @return the processed sentence
+ */
+std::string ProcessForSegment(const std::string& sent);
+
+/***
  * Test whether the input cn_num is a valid chinese number
  * @param cn_num
  * @return true if valid
