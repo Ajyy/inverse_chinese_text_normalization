@@ -1,5 +1,5 @@
 # inverse_chinese_text_normalization
-将normalize过的中文文本，做逆向normalize。具体功能参考自 [chinese_text_normalization](https://github.com/speechio/chinese_text_normalization)的逆向实现。
+将normalize过的中文文本，做逆向normalize。具体功能即实现 [chinese_text_normalization](https://github.com/speechio/chinese_text_normalization)的逆向版本。
 
 代码思路可部分参考我之前项目的README.md部分：[chinese_number_recognition](https://github.com/Ajyy/chinese_number_recognition)。
 
