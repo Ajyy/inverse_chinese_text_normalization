@@ -101,18 +101,19 @@ void CheckIdiomAndCi(const string& sent, vector<int> &ic_index) {
   for (const auto& ic: idiom_and_ci) {
     int ic_idx;
     if ((ic_idx = sent.find(ic)) != string::npos) {
+        // // Junyi mod
       // If the character around the idiom or ci is number or unit, then not save it
-      if (ic_idx - CHINESE_CHAR_LEN >= 0) {
-        string pre_cn_char = sent.substr(ic_idx - CHINESE_CHAR_LEN, CHINESE_CHAR_LEN);
-        if (BASE_NUMBER_MAP_TABLE.count(pre_cn_char) || UNIT_MAP_TABLE.count(pre_cn_char))
-          continue;
-      }
-
-      if (ic_idx + ic.length() + CHINESE_CHAR_LEN <= sent.length()) {
-        string after_cn_char = sent.substr(ic_idx + ic.length(), CHINESE_CHAR_LEN);
-        if (BASE_NUMBER_MAP_TABLE.count(after_cn_char) || UNIT_MAP_TABLE.count(after_cn_char))
-          continue;
-      }
+//      if (ic_idx - CHINESE_CHAR_LEN >= 0) {
+//        string pre_cn_char = sent.substr(ic_idx - CHINESE_CHAR_LEN, CHINESE_CHAR_LEN);
+//        if (BASE_NUMBER_MAP_TABLE.count(pre_cn_char) || UNIT_MAP_TABLE.count(pre_cn_char))
+//          continue;
+//      }
+//
+//      if (ic_idx + ic.length() + CHINESE_CHAR_LEN <= sent.length()) {
+//        string after_cn_char = sent.substr(ic_idx + ic.length(), CHINESE_CHAR_LEN);
+//        if (BASE_NUMBER_MAP_TABLE.count(after_cn_char) || UNIT_MAP_TABLE.count(after_cn_char))
+//          continue;
+//      }
 
       // Save the index information
       for (int i = ic_idx; i < ic_idx + ic.length(); i += CHINESE_CHAR_LEN)
@@ -166,13 +167,13 @@ void FindCNNums(const string& sent, vector<pair<string, int>> &nums_info, vector
     string cur_cn_char = sent.substr(i, CHINESE_CHAR_LEN);
     // Test for 点
     if ((cur_cn_char == "点" || cur_cn_char == "點") && i + CHINESE_CHAR_LEN < sent.length()
-        && find(ic_index.begin(), ic_index.end(), i + CHINESE_CHAR_LEN) == ic_index.end()
-        && (BASE_NUMBER_MAP_TABLE.count(sent.substr(i + CHINESE_CHAR_LEN, CHINESE_CHAR_LEN))
-            || sent.substr(i + CHINESE_CHAR_LEN, CHINESE_CHAR_LEN) == "十"))
+    && find(ic_index.begin(), ic_index.end(), i + CHINESE_CHAR_LEN) == ic_index.end()
+    && (BASE_NUMBER_MAP_TABLE.count(sent.substr(i + CHINESE_CHAR_LEN, CHINESE_CHAR_LEN))
+    || sent.substr(i + CHINESE_CHAR_LEN, CHINESE_CHAR_LEN) == "十"))
       check_dian = CheckDateKeyword(sent, i);
 
-    while (BASE_NUMBER_MAP_TABLE.count(cur_cn_char) || (UNIT_MAP_TABLE.count(cur_cn_char)
-        && ((last_char != "点" && last_char != "點") || check_dian))) {
+    while (find(ic_index.begin(), ic_index.end(), i) == ic_index.end() && (BASE_NUMBER_MAP_TABLE.count(cur_cn_char) || (UNIT_MAP_TABLE.count(cur_cn_char)
+    && ((last_char != "点" && last_char != "點") || check_dian)))) {
       cn_num += cur_cn_char;
       i += CHINESE_CHAR_LEN;
       if (i + CHINESE_CHAR_LEN - 1 < sent.length())
@@ -185,7 +186,7 @@ void FindCNNums(const string& sent, vector<pair<string, int>> &nums_info, vector
       if (check_dian)
         check_dian = false;
       if (IsValid(cn_num) && cn_num != "百" && (!UNIT_MAP_TABLE.count(cn_num)
-          || cn_num == "十" || i + 2 * CHINESE_CHAR_LEN <= sent.length() && sent.substr(i, 2 * CHINESE_CHAR_LEN) == "分之")) {
+      || cn_num == "十" || i + 2 * CHINESE_CHAR_LEN <= sent.length() && sent.substr(i, 2 * CHINESE_CHAR_LEN) == "分之")) {
         nums_info.emplace_back(pair<string, int>(cn_num, i - cn_num.length()));
       }
       cn_num = "";
@@ -203,7 +204,14 @@ void FindCNNums(const string& sent, vector<pair<string, int>> &nums_info, vector
 
 string CNNumTranslation(string cn_num) {
   // No unit one
-  if (UNIT_MAP_TABLE.count(cn_num))
+  bool exist_num = false;
+  for (int i = 0; i < cn_num.length(); i += CHINESE_CHAR_LEN) {
+      if (!UNIT_MAP_TABLE.count(cn_num.substr(i, CHINESE_CHAR_LEN))) {
+          exist_num = true;
+          break;
+      }
+  }
+  if (!exist_num)
     cn_num = "一" + cn_num;
   string no_unit_result = ConvertNoUnitCNNum(cn_num);
   if (!no_unit_result.empty())
@@ -286,7 +294,7 @@ string ProcessSent(const string &sent, const string& order, vector<int> &ic_inde
         is_percentage = true;
         processed_sent = processed_sent.substr(0, processed_sent.length() - 3 * CHINESE_CHAR_LEN);
       } else if (isdigit(sent[i]) && i >= 1 + 2 * CHINESE_CHAR_LEN && sent.substr(i - 2 * CHINESE_CHAR_LEN, 2 * CHINESE_CHAR_LEN) == "分之"
-          && isdigit(sent[i - 2 * CHINESE_CHAR_LEN - 1])) {
+      && isdigit(sent[i - 2 * CHINESE_CHAR_LEN - 1])) {
         is_fraction = true;
         first_num = last_num;
       }
@@ -299,8 +307,8 @@ string ProcessSent(const string &sent, const string& order, vector<int> &ic_inde
       processed_sent += sent[i];
       last_num += sent[i];
       i++;
-      if (i + CHINESE_CHAR_LEN <= sent.length()
-          && (sent.substr(i, CHINESE_CHAR_LEN) == "点" || sent.substr(i, CHINESE_CHAR_LEN) == "點")){
+      if (i + CHINESE_CHAR_LEN * 2 <= sent.length() && isdigit(sent[i + CHINESE_CHAR_LEN])
+      && (sent.substr(i, CHINESE_CHAR_LEN) == "点" || sent.substr(i, CHINESE_CHAR_LEN) == "點")){
         if (CheckDateKeyword(sent, i))
           break;
         else {
@@ -324,7 +332,15 @@ string ProcessSent(const string &sent, const string& order, vector<int> &ic_inde
       if (BIG_TO_SMALL.count(cur_char)) { // Big number to small number
         processed_sent += BIG_TO_SMALL.find(cur_char)->second;
       } else if (PRE_SPACIAL_MAP_TABLE.count(cur_char)) { // For special case
-        processed_sent += PRE_SPACIAL_MAP_TABLE.find(cur_char)->second;
+        if ((cur_char == "两" || cur_char == "兩")) {
+          if (i + CHINESE_CHAR_LEN * 2 < sent.length()
+            && UNIT_MAP_TABLE.count(sent.substr(i + CHINESE_CHAR_LEN, CHINESE_CHAR_LEN)))
+            processed_sent += PRE_SPACIAL_MAP_TABLE.find(cur_char)->second;
+          else
+            processed_sent += cur_char;
+        } else {
+          processed_sent += PRE_SPACIAL_MAP_TABLE.find(cur_char)->second;
+        }
       } else {
         processed_sent += cur_char;
       }
@@ -367,11 +383,11 @@ string InverseNormalize(const string& sent) {
   for (const pair<string, int>& num_info: nums_info) {
     result += processed_sent.substr(left_idx, num_info.second - left_idx);
     string translation_result = CNNumTranslation(num_info.first);
-    if ((translation_result.length() > num_info.first.length() / CHINESE_CHAR_LEN
-        && translation_result.length() > 5)
-        || result.length() >= 2 * CHINESE_CHAR_LEN && result.substr(result.length() - CHINESE_CHAR_LEN, CHINESE_CHAR_LEN) == "点"
-            && (BASE_NUMBER_MAP_TABLE.count(result.substr(result.length() - 2 * CHINESE_CHAR_LEN, CHINESE_CHAR_LEN))
-                || UNIT_MAP_TABLE.count(result.substr(result.length() - 2 * CHINESE_CHAR_LEN, CHINESE_CHAR_LEN))))
+    // Junyi mod
+    if  ((translation_result.length() > num_info.first.length() / CHINESE_CHAR_LEN && translation_result.length() > 8) ||
+    result.length() >= 2 * CHINESE_CHAR_LEN && result.substr(result.length() - CHINESE_CHAR_LEN, CHINESE_CHAR_LEN) == "点"
+    && (BASE_NUMBER_MAP_TABLE.count(result.substr(result.length() - 2 * CHINESE_CHAR_LEN, CHINESE_CHAR_LEN))
+    || UNIT_MAP_TABLE.count(result.substr(result.length() - 2 * CHINESE_CHAR_LEN, CHINESE_CHAR_LEN))))
       result += num_info.first;
     else
       result += translation_result;

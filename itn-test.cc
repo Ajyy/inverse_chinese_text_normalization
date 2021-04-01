@@ -71,8 +71,8 @@ void UnitTestPreprocessSent() {
   CheckIdiomAndCi("壹贰叁肆伍陆柒捌玖貳參陸拾佰仟萬", ic_index);
   KALDI_ASSERT(ProcessSent("壹贰叁肆伍陆柒捌玖貳參陸拾佰仟萬", "pre", ic_index) == "一二三四五六七八九二三六十百千万");
   ic_index = {};
-  CheckIdiomAndCi("两兩幺", ic_index);
-  KALDI_ASSERT(ProcessSent("两兩幺", "pre", ic_index) == "二二一");
+  CheckIdiomAndCi("幺", ic_index);
+  KALDI_ASSERT(ProcessSent("幺", "pre", ic_index) == "一");
   // Test for last order
   ic_index = {};
   CheckIdiomAndCi("正负負", ic_index);
@@ -133,6 +133,24 @@ void UnitTestInverseNormalizeByInputFile(const string& file_name) {
   }
 }
 
+void UnitTestSpecialCase() {
+    KALDI_ASSERT(InverseNormalize("四川") == "四川");
+    KALDI_ASSERT(InverseNormalize("三亚") == "三亚");
+    KALDI_ASSERT(InverseNormalize("第五、六两层") == "第5、6两层");
+    KALDI_ASSERT(InverseNormalize("收获千万粒") == "收获千万粒");
+    KALDI_ASSERT(InverseNormalize("七七八八") == "7788");
+    KALDI_ASSERT(InverseNormalize("十千卡") == "10千卡");
+    KALDI_ASSERT(InverseNormalize("三千千瓦") == "3000千瓦");
+    KALDI_ASSERT(InverseNormalize("还差一刻钟到五点") == "还差一刻钟到5点");
+    KALDI_ASSERT(InverseNormalize("帮我称二两的决明子") == "帮我称2两的决明子");
+    KALDI_ASSERT(InverseNormalize("长苞冰杉、丽江铁杉、桃儿七、八角莲、四川牡丹、金铁锁等，特别是地狱谷中的情人树（铁杉、高山栎同根）堪称植物界奇观。")
+    == "长苞冰杉、丽江铁杉、桃儿七、八角莲、四川牡丹、金铁锁等，特别是地狱谷中的情人树（铁杉、高山栎同根）堪称植物界奇观。");
+    KALDI_ASSERT(InverseNormalize("四两棉花一张弓") == "4两棉花1张弓");
+//    KALDI_ASSERT(InverseNormalize("当地人依次称其中一些地方一道桥、二道桥、八道桥。一道桥、二道桥和七道桥是理想的胡杨林观光区，八道桥的尽头即是巴丹吉林沙漠。")
+//    == "当地人依次称其中一些地方一道桥、二道桥、八道桥。一道桥、二道桥和七道桥是理想的胡杨林观光区，八道桥的尽头即是巴丹吉林沙漠。");
+    KALDI_ASSERT(InverseNormalize("不怕一万，就怕万一") == "不怕一万，就怕万一");
+}
+
 }  // end namespace itn.
 
 int main() {
@@ -149,5 +167,6 @@ int main() {
   UnitTestInverseNormalize();
   UnitTestInverseNormalizeByInputFile("data/susie-test-cases.txt");
   UnitTestInverseNormalizeByInputFile("data/junyi-test-cases.txt");
+  UnitTestSpecialCase();
   return 0;
 }
