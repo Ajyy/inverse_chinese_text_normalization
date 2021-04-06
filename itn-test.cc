@@ -149,6 +149,8 @@ void UnitTestSpecialCase() {
 //    KALDI_ASSERT(InverseNormalize("当地人依次称其中一些地方一道桥、二道桥、八道桥。一道桥、二道桥和七道桥是理想的胡杨林观光区，八道桥的尽头即是巴丹吉林沙漠。")
 //    == "当地人依次称其中一些地方一道桥、二道桥、八道桥。一道桥、二道桥和七道桥是理想的胡杨林观光区，八道桥的尽头即是巴丹吉林沙漠。");
     KALDI_ASSERT(InverseNormalize("不怕一万，就怕万一") == "不怕一万，就怕万一");
+//    cout << InverseNormalize("多扣了我十一点五分") << endl;
+    KALDI_ASSERT(InverseNormalize("百分之百") == "百分之百");
 }
 
 }  // end namespace itn.
@@ -168,5 +170,6 @@ int main() {
   UnitTestInverseNormalizeByInputFile("data/susie-test-cases.txt");
   UnitTestInverseNormalizeByInputFile("data/junyi-test-cases.txt");
   UnitTestSpecialCase();
+//  UnitTestInverseNormalizeByInputFile("data/zijiao-test.txt");
   return 0;
 }

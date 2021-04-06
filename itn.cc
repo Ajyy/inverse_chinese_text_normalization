@@ -307,7 +307,7 @@ string ProcessSent(const string &sent, const string& order, vector<int> &ic_inde
       processed_sent += sent[i];
       last_num += sent[i];
       i++;
-      if (i + CHINESE_CHAR_LEN * 2 <= sent.length() && isdigit(sent[i + CHINESE_CHAR_LEN])
+      if (i + CHINESE_CHAR_LEN + 1 <= sent.length() && isdigit(sent[i + CHINESE_CHAR_LEN])
       && (sent.substr(i, CHINESE_CHAR_LEN) == "点" || sent.substr(i, CHINESE_CHAR_LEN) == "點")){
         if (CheckDateKeyword(sent, i))
           break;
