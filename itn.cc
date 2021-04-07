@@ -93,8 +93,22 @@ bool IsValid(const std::string& cn_num) {
     if (UNIT_MAP_TABLE.count(cur_cn_char))
       has_unit = true;
   }
-
   return !(has_unit && has_cont_base_num);
+}
+
+string DeleteZero(const std::string& cn_num) {
+  string last_char;
+  string cur_cn_char;
+  string processed_nums;
+  for (int i = 0; i < cn_num.length(); i += CHINESE_CHAR_LEN) {
+    last_char = cur_cn_char;
+    cur_cn_char = cn_num.substr(i, CHINESE_CHAR_LEN);
+    if (!(last_char == "年" && cur_cn_char == "零")) {
+      processed_nums += cur_cn_char;
+    }
+  }
+
+  return processed_nums;
 }
 
 void CheckIdiomAndCi(const string& sent, vector<int> &ic_index) {
@@ -161,8 +175,13 @@ void FindCNNums(const string& sent, vector<pair<string, int>> &nums_info, vector
     while (sent[i] == ' ')
       i++;
 
-    while (find(ic_index.begin(), ic_index.end(), i) != ic_index.end())
+    while (find(ic_index.begin(), ic_index.end(), i) != ic_index.end()){
+      if (BASE_NUMBER_MAP_TABLE.count(sent.substr(i, CHINESE_CHAR_LEN)) && (i - CHINESE_CHAR_LEN) >= 0
+      && sent.substr(i - CHINESE_CHAR_LEN, CHINESE_CHAR_LEN) == "点") {
+        break;
+      }
       i += CHINESE_CHAR_LEN;
+    }
 
     string cur_cn_char = sent.substr(i, CHINESE_CHAR_LEN);
     // Test for 点
@@ -172,10 +191,19 @@ void FindCNNums(const string& sent, vector<pair<string, int>> &nums_info, vector
     || sent.substr(i + CHINESE_CHAR_LEN, CHINESE_CHAR_LEN) == "十"))
       check_dian = CheckDateKeyword(sent, i);
 
-    while (find(ic_index.begin(), ic_index.end(), i) == ic_index.end() && (BASE_NUMBER_MAP_TABLE.count(cur_cn_char) || (UNIT_MAP_TABLE.count(cur_cn_char)
+//find(ic_index.begin(), ic_index.end(), i) == ic_index.end() &&
+    while ((BASE_NUMBER_MAP_TABLE.count(cur_cn_char) || (UNIT_MAP_TABLE.count(cur_cn_char)
     && ((last_char != "点" && last_char != "點") || check_dian)))) {
       cn_num += cur_cn_char;
       i += CHINESE_CHAR_LEN;
+      if (find(ic_index.begin(), ic_index.end(), i) != ic_index.end()
+        && i + 2 * CHINESE_CHAR_LEN - 1 < sent.length()
+        && !(BASE_NUMBER_MAP_TABLE.count(sent.substr(i + CHINESE_CHAR_LEN, CHINESE_CHAR_LEN))
+          || UNIT_MAP_TABLE.count(sent.substr(i + CHINESE_CHAR_LEN, CHINESE_CHAR_LEN)))
+        && find(ic_index.begin(), ic_index.end(), i + CHINESE_CHAR_LEN) != ic_index.end()) {
+//        i -= CHINESE_CHAR_LEN;
+        break;
+      }
       if (i + CHINESE_CHAR_LEN - 1 < sent.length())
         cur_cn_char = sent.substr(i, CHINESE_CHAR_LEN);
       else
@@ -372,6 +400,7 @@ string InverseNormalize(const string& sent) {
 
   // Process the sentence to translate from traditional to simplified, etc
   processed_sent = ProcessSent(processed_sent, "pre", ic_index);
+  processed_sent = DeleteZero(processed_sent);
   vector<pair<string, int>> nums_info;
 
   // Get the number information in the sentence, including the start index and the number string
